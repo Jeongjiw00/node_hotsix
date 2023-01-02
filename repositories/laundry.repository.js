@@ -6,7 +6,8 @@ class LaundryRepository {
   }
 
   findApplyById = async (id) => {
-    const applies = await this.Model.findAll({ where: { id: id } });
+    const applies = await this.Model.findAll({ where: { userId: id } });
+    console.log(applies);
 
     return applies;
   };
