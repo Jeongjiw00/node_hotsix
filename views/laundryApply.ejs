@@ -1,0 +1,100 @@
+<form
+  class="container"
+  id="file_form"
+  action="/laundry/apply"
+  method="post"
+  enctype="multipart/form-data"
+>
+  <div class="applyForm">
+    <div class="mb-3">
+      <label for="laundryName" class="form-label">세탁물 이름</label>
+      <input
+        type="text"
+        class="form-control"
+        id="laundryName"
+        placeholder="세탁물1"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="laundryContent" class="form-label">세탁물 내용</label>
+      <input
+        type="text"
+        class="form-control"
+        id="laundryContent"
+        placeholder="니트"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="laundryAddress" class="form-label">주소</label>
+      <input
+        type="text"
+        class="form-control"
+        id="laundryAddress"
+        placeholder="서울특별시 서초구 어쩌고 저쩌고"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="requests" class="form-label">요청사항</label>
+      <input
+        type="text"
+        class="form-control"
+        id="requests"
+        placeholder="조심히 세탁해주세요"
+        required
+      />
+    </div>
+    <div>
+      <input type="file" class="form-control" id="laundryImg" name="file" />
+    </div>
+  </div>
+  <!-- <input type="submit" value="세탁신청" /> -->
+</form>
+<div>
+  <button type="button" onclick="apply_laundry()">세탁 신청</button>
+  <button type="button" onclick="location.href='/'">닫기</button>
+</div>
+<script>
+  function apply_laundry() {
+    // const input_file = document.querySelector("#file_form");
+
+    let laundryName = $("#laundryName").val();
+    let laundryContent = $("#laundryContent").val();
+    let laundryAddress = $("#laundryAddress").val();
+    let laundryImg = $("#laundryImg");
+    let requests = $("#requests").val();
+
+    let body = {
+      laundryName: laundryName,
+      laundryContent: laundryContent,
+      laundryAddress: laundryAddress,
+      requests: requests,
+    };
+
+    let formData = new FormData();
+    formData.append("file", laundryImg);
+    formData.append(body);
+    console.log(formData);
+    $.ajax({
+      type: "POST",
+      url: "/laundry/apply",
+      data: formData,
+      enctype: "multipart/form-data",
+      contentType: false,
+      processData: false,
+      success: function (response) {
+        window.location.replace("/");
+      },
+      error: function (error) {
+        customAlert(error.responseJSON.errorMessage);
+      },
+    });
+  }
+
+  function customAlert(text) {
+    $("#alertText").text(text);
+    $("#alertModal").modal("show");
+  }
+</script>

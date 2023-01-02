@@ -1,0 +1,25 @@
+{
+  "development": {
+    "username": "root",
+    "password": "1234qwer",
+    "database": "laundry",
+    "host": "express-database.cqif5bxbzyvd.ap-northeast-2.rds.amazonaws.com",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": "1234qwer",
+    "database": "laundry_test",
+    "host": "express-database.cqif5bxbzyvd.ap-northeast-2.rds.amazonaws.com",
+    "dialect": "mysql",
+    "logging": false
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
+

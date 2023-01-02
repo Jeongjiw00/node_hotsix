@@ -1,0 +1,15 @@
+.applyForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50%;
+  border: 1px solid white;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.apply_btn {
+  
+}
