@@ -22,6 +22,11 @@ app.get("/laundry", (req, res) => {
   res.render("index_jw.ejs");
 });
 
+//마이페이지 
+app.get("/myPage", (req, res) => {
+  res.render("index_jg.ejs");
+});
+
 //라우터,json
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
