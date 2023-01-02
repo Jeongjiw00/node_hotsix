@@ -5,8 +5,8 @@ class LaundryRepository {
     this.Model = Model;
   }
 
-  findApplyById = async (userId) => {
-    const applies = await this.Model.findAll({ where: { userId: userId } });
+  findApplyById = async (id) => {
+    const applies = await this.Model.findAll({ where: { id: id } });
 
     return applies;
   };
@@ -17,7 +17,7 @@ class LaundryRepository {
     laundryAddress,
     laundryImg,
     requests,
-    userId
+    id
   ) => {
     const createApplyData = await this.Model.create({
       laundryName,
@@ -25,7 +25,7 @@ class LaundryRepository {
       laundryAddress,
       laundryImg,
       requests,
-      userId,
+      userId: id,
     });
 
     return createApplyData;

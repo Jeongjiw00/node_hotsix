@@ -10,13 +10,13 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       // models.user.hasMany(models.review, { foreignKey: 'user_id' });
-      models.user.hasMany(models.laundry, { foreignKey: "id" });
-      models.user.hasOne(models.laundry, { foreignKey: "id" });
+      models.user.hasMany(models.laundry, { foreignKey: "userId" });
+      models.user.hasMany(models.laundry, { foreignKey: "adminId" });
     }
   }
   user.init(
     {
-      userId: {
+      id: {
         unique: true,
         autoIncrement: true,
         primaryKey: true,

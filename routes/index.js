@@ -11,7 +11,7 @@ router.use("/login", loginRouter);
 const signUpRouter = require("./signUp.routes");
 router.use("/signUp", signUpRouter);
 //리뷰관련
-const reviewRouter = require("./reivew.routes");
+const reviewRouter = require("./review.routes");
 router.use("/review", reviewRouter);
 
 module.exports = router;

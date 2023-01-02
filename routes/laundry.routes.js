@@ -9,6 +9,6 @@ const upload = multer({ dest: "uploads/" });
 
 // router.get('/', registerController.getPosts);
 router.post("/apply", upload.single("file"), laundryController.createApply);
-router.get("/:userId", laundryController.getApplyById);
+router.get("/:id", laundryController.getApplyById);
 
 module.exports = router;

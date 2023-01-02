@@ -4,8 +4,8 @@ const { laundry } = require("../models/index");
 class LaundryService {
   laundryRepository = new LaundryRepository(laundry);
 
-  findApplyById = async (userId) => {
-    const allLaundryById = await this.laundryRepository.findApplyById(userId);
+  findApplyById = async (id) => {
+    const allLaundryById = await this.laundryRepository.findApplyById(id);
 
     allLaundryById.sort((a, b) => {
       return b.createAt - a.createAt;
@@ -18,7 +18,7 @@ class LaundryService {
         laundryAddress: laundry.laundryAddress,
         laundryImg: laundry.laundryImg,
         requests: laundry.requests,
-        userId: laundry.userId,
+        id: laundry.id,
       };
     });
   };
@@ -29,7 +29,7 @@ class LaundryService {
     laundryAddress,
     laundryImg,
     requests,
-    userId
+    id
   ) => {
     const createApplyData = await this.laundryRepository.createApply(
       laundryName,
@@ -37,7 +37,7 @@ class LaundryService {
       laundryAddress,
       laundryImg,
       requests,
-      userId
+      id
     );
 
     return {

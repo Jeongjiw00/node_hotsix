@@ -12,6 +12,7 @@
         type="text"
         class="form-control"
         id="laundryName"
+        name="laundryName"
         placeholder="세탁물1"
         required
       />
@@ -22,6 +23,7 @@
         type="text"
         class="form-control"
         id="laundryContent"
+        name="laundryContent"
         placeholder="니트"
         required
       />
@@ -32,6 +34,7 @@
         type="text"
         class="form-control"
         id="laundryAddress"
+        name="laundryAddress"
         placeholder="서울특별시 서초구 어쩌고 저쩌고"
         required
       />
@@ -42,6 +45,7 @@
         type="text"
         class="form-control"
         id="requests"
+        name="requests"
         placeholder="조심히 세탁해주세요"
         required
       />
@@ -50,49 +54,13 @@
       <input type="file" class="form-control" id="laundryImg" name="file" />
     </div>
   </div>
-  <!-- <input type="submit" value="세탁신청" /> -->
+  <button type="button" onclick="location.href='/1';">세탁신청</button>
 </form>
 <div>
-  <button type="button" onclick="apply_laundry()">세탁 신청</button>
-  <button type="button" onclick="location.href='/'">닫기</button>
+  <!-- <button type="button" onclick="apply_laundry()">세탁 신청</button> -->
+  <button type="button" onclick="location.href='/';">닫기</button>
 </div>
 <script>
-  function apply_laundry() {
-    // const input_file = document.querySelector("#file_form");
-
-    let laundryName = $("#laundryName").val();
-    let laundryContent = $("#laundryContent").val();
-    let laundryAddress = $("#laundryAddress").val();
-    let laundryImg = $("#laundryImg");
-    let requests = $("#requests").val();
-
-    let body = {
-      laundryName: laundryName,
-      laundryContent: laundryContent,
-      laundryAddress: laundryAddress,
-      requests: requests,
-    };
-
-    let formData = new FormData();
-    formData.append("file", laundryImg);
-    formData.append(body);
-    console.log(formData);
-    $.ajax({
-      type: "POST",
-      url: "/laundry/apply",
-      data: formData,
-      enctype: "multipart/form-data",
-      contentType: false,
-      processData: false,
-      success: function (response) {
-        window.location.replace("/");
-      },
-      error: function (error) {
-        customAlert(error.responseJSON.errorMessage);
-      },
-    });
-  }
-
   function customAlert(text) {
     $("#alertText").text(text);
     $("#alertModal").modal("show");
