@@ -27,6 +27,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/", router);
 
+app.use("/auth", authRouter);
+
 //포트설정
 app.listen(port, () => {
   console.log(port, "포트로 서버가 열렸어요!");
