@@ -18,7 +18,8 @@ class LaundryService {
         laundryAddress: laundry.laundryAddress,
         laundryImg: laundry.laundryImg,
         requests: laundry.requests,
-        id: laundry.id,
+        status: laundry.status,
+        userId: laundry.userId,
       };
     });
   };
