@@ -1,5 +1,3 @@
-const authRouter = require('./routes/auth.routes.js')
-
 const express = require("express");
 const ejs = require("ejs");
 
@@ -33,8 +31,6 @@ app.get("/laundry/:id", (req, res) => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/api", router);
-
-app.use("/auth", authRouter);
 
 //포트설정
 app.listen(port, () => {
