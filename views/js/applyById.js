@@ -4,7 +4,6 @@ $(document).ready(function () {
     url: "/api/laundry",
     async: false,
     success: function (response) {
-      console.log(response.data);
       if (response.data) {
         // 신청 내역이 있다면?
         for (let i = 0; i < response.data.length; i++) {
