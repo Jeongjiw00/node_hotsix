@@ -6,6 +6,7 @@ const router = express.Router();
 const PointController = require('../controllers/point.controller');
 const pointController = new PointController();
 
-router.get('/userMyPage', pointController.getPoint);
+router.get('/myPage', pointController.getPoint);
+
 
 module.exports = router;

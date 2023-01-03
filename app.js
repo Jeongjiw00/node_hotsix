@@ -21,7 +21,12 @@ app.get("/laundry/apply", (req, res) => {
 app.get("/laundry/:id", (req, res) => {
   res.render("index_jw.ejs", { test: true });
 });
-
+app.get("/user/myPage", (req, res)=> {
+  res.render("userMyPage.ejs")
+});
+app.get("/owner/myPage", (req, res)=> {
+  res.render("ownerMyPage.ejs")
+});
 //메인페이지 나중에 변경해야함~
 // app.get("/", (req, res) => {
 //   res.render("index_jw.ejs");
