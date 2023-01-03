@@ -47,7 +47,6 @@
         id="requests"
         name="requests"
         placeholder="조심히 세탁해주세요"
-        required
       />
     </div>
     <div>
@@ -60,7 +59,11 @@
 
 <script>
   function apply() {
-    customAlert("신청되었습니다!");
+    if (error) {
+      customAlert(error.responseJSON.errorMessage);
+    } else {
+      customAlert("신청되었습니다!");
+    }
   }
 
   function customAlert(text) {
