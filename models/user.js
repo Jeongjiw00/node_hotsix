@@ -39,10 +39,15 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.STRING,
       },
+      admin: {
+        allowNull: false,
+        type: DataTypes.TINYINT,
+        defaultValue: 0, //0이 고객 1이 사장님
+      },
       point: {
         allowNull: false,
         type: DataTypes.INTEGER,
-        defaultValue: 0,
+        defaultValue: 1000000,
       },
       createdAt: {
         allowNull: false,
