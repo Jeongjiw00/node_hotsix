@@ -14,6 +14,8 @@ router.get("/laundries", async (req, res) => {
     // console.log(laundries);
     // console.log(laundry);
 
+    console.log(Laundry);
+
     return res.status(200).send({laundries});
 });
 
