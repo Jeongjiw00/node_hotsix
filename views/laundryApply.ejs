@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <form
   class="container"
   id="file_form"
@@ -5,6 +6,9 @@
   method="post"
   enctype="multipart/form-data"
 >
+=======
+<div class="container" id="file_form">
+>>>>>>> origin/feature/laundry_user
   <div class="applyForm">
     <div class="mb-3">
       <label for="laundryName" class="form-label">세탁물 이름</label>
@@ -54,6 +58,7 @@
     </div>
   </div>
   <div class="button_container">
+<<<<<<< HEAD
     <input class="btn" type="submit" value="세탁신청" onclick="apply()" />
     <button class="btn" type="button" onclick="location.href='/'">닫기</button>
   </div>
@@ -66,6 +71,62 @@
     } else {
       customAlert("신청되었습니다!");
     }
+=======
+    <input class="btn" type="button" value="세탁신청" onclick=" apply()" />
+    <button class="btn" type="button" onclick="location.href='/'">닫기</button>
+  </div>
+</div>
+
+<script>
+  function apply() {
+    let laundryName = $("#laundryName").val();
+    let laundryContent = $("#laundryContent").val();
+    let laundryAddress = $("#laundryAddress").val();
+    let requests = $("#requests").val();
+
+    let file = document.getElementById("laundryImg").files[0];
+
+    const formdata = new FormData();
+    formdata.append("file", file);
+    formdata.append("laundryName", laundryName);
+    formdata.append("laundryContent", laundryContent);
+    formdata.append("laundryAddress", laundryAddress);
+    formdata.append("requests", requests);
+
+    $.ajax({
+      type: "POST",
+      url: "/api/laundry/apply",
+      data: formdata,
+      cache: false,
+      contentType: false,
+      processData: false,
+      enctype: "multipart/form-data",
+      success: function (response) {
+        minusPoint();
+      },
+      error: function (response) {
+        customAlert(error.responseJSON.errorMessage);
+      },
+    });
+  }
+
+  function minusPoint() {
+    $.ajax({
+      type: "PUT",
+      url: "/api/points/change",
+      async: false,
+      success: function (response) {
+        if (response.data.changePoint >= 10000) {
+          customAlert("세탁신청이 완료되었습니다!");
+          //로그인구현되면 변경해야함~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+          window.location.replace("/laundry/1");
+        }
+      },
+      error: function (error) {
+        customAlert(error.responseJSON.errorMessage);
+      },
+    });
+>>>>>>> origin/feature/laundry_user
   }
 
   function customAlert(text) {

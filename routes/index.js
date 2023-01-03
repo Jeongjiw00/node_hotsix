@@ -4,6 +4,9 @@ const router = express.Router();
 //고객 세탁물신청,불러오기
 const laundryRouter = require("./laundry.routes");
 router.use("/laundry", laundryRouter);
+//포인트 차감기능
+const pointChangeRouter = require("./pointChange.routes");
+router.use("/points", pointChangeRouter);
 //로그인
 const authRouter = require("./auth.routes");
 router.use("/auth", authRouter);
