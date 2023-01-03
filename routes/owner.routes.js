@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { Op } = require("sequelize");
 
+
 const { laundry: Laundry } = require("../models");
 
 
@@ -13,7 +14,7 @@ router.get("/laundries", async (req, res) => {
     // console.log(laundries);
     // console.log(laundry);
 
-    return res.status(200).send({msg: "oo"});
+    return res.status(200).send({laundries});
 });
 
 
@@ -48,7 +49,7 @@ router.get("/laundry/:laundryId", async (req, res) => {
     const ownerId = 2 //임시로 아이디값 2
 
     const laundry = await Laundry.findOne({
-        where: {laundryId, adminId: ownerId, status:{ [Sequelize.Op.lt]: 4}}
+        where: {laundryId, adminId: ownerId, status:{ [Op.lt]: 4}}
     })
 
     if(!laundry){
@@ -67,7 +68,7 @@ router.patch("/laundry/:laundryId", async (req, res) => {
     const ownerId = 2 //임시로 아이디값 2
 
     const laundry = await Laundry.findOne({
-        where: {laundryId, adminId: ownerId, status:{ [Sequelize.Op.lt]: 4}}
+        where: {laundryId, adminId: ownerId, status:{ [Op.lt]: 4}}
     })
 
     if(!laundry){
