@@ -18,7 +18,7 @@ class LaundryController {
     try {
       const { laundryName, laundryContent, laundryAddress, requests } =
         req.body;
-      // console.log(laundryName, laundryContent, laundryAddress, requests);
+      console.log(laundryName, laundryContent, laundryAddress, requests);
       const laundryImg = req.file.filename;
 
       //아직 로그인기능 없어서 임의로 해둠!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
