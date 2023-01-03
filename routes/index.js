@@ -5,7 +5,7 @@ const router = express.Router();
 const laundryRouter = require("./laundry.routes");
 router.use("/laundry", laundryRouter);
 //로그인
-const loginRouter = require("./login.routes");
+const loginRouter = require("./auth.routes");
 router.use("/login", loginRouter);
 //회원가입
 const signUpRouter = require("./signUp.routes");

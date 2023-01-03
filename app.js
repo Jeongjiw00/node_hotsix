@@ -1,3 +1,5 @@
+const authRouter = require('./routes/auth.routes.js')
+
 const express = require("express");
 const ejs = require("ejs");
 
