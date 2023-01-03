@@ -18,7 +18,6 @@ class LaundryController {
     try {
       const { laundryName, laundryContent, laundryAddress, requests } =
         req.body;
-      console.log(laundryName, laundryContent, laundryAddress, requests);
       const laundryImg = req.file.filename;
 
       //아직 로그인기능 없어서 임의로 해둠!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -36,10 +35,9 @@ class LaundryController {
         id
       );
       //로그인기능받으면바꿔야함!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      res.redirect("/laundry/1");
-      // res.status(201).json({ data: createApplyData });
+      // res.redirect("/laundry/1");
+      res.status(201).json({ data: createApplyData });
     } catch (error) {
-      console.log(error);
       res.status(400).json({ errorMessage: error.message });
     }
   };

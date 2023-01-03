@@ -54,22 +54,6 @@
 </div>
 
 <script>
-  // $(document).ready(function () {});
-
-  // const fileInput = document.getElementById("laundryImg");
-  // fileInput.onchange = () => {
-  //   const selectedFile = fileInput.files[0];
-  //   console.log(selectedFile);
-  // };
-
-  // 이미지 업로드 하는 함수
-  // function uploadImage(e) {
-  //   const file = e.target.files[0];
-
-  //   const formdata = new FormData();
-  //   formdata.append('file', file)
-  // }
-
   function apply() {
     let laundryName = $("#laundryName").val();
     let laundryContent = $("#laundryContent").val();
@@ -110,6 +94,8 @@
       success: function (response) {
         if (response.data.changePoint >= 10000) {
           customAlert("세탁신청이 완료되었습니다!");
+          //로그인구현되면 변경해야함~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+          window.location.replace("/laundry/1");
         }
       },
       error: function (error) {

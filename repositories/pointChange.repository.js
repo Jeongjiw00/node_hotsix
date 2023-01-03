@@ -6,7 +6,6 @@ class PointRepository {
   changePointById = async (id) => {
     const userById = await user.findByPk(id);
     let point = userById.point;
-    console.log(point, 7897897);
 
     const changePoint = await user.update(
       {
@@ -17,7 +16,6 @@ class PointRepository {
 
     const newUserById = await user.findByPk(id);
     const newPoint = newUserById.point;
-    console.log(newPoint, 54654654);
 
     return newPoint;
   };
