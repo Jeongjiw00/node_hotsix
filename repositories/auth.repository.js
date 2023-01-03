@@ -1,40 +1,43 @@
+// const { user: User } = require("../models");
+
 class AuthRepository {
   constructor(Model) {
     this.Model = Model;
+  }
 
   findByNickname = async (nickname) => {
-    const userNickname = await this.Model.findOne({ where: {nickname: nickname}});
+    const userNickname = await this.Model.findAll({ where: { nickname: nickname }});    
     return userNickname;
+
+    // const a = await this.Model.findById({})
+
+    return "oo";
   };
 
-  findApplyById = async (id) => {
-    const userId = await this.Model.findOne({ where: { id: id } });
+  findById = async (id) => {
+    const userId = await this.Model.findAll({ where: { id: id } });     
     return userId;
   };
-  
-  findById
 
   createUser = async (
     nickname, 
-    password, 
-    address, 
+    password,     
     email, 
     phoneNumber, 
     admin
   ) => {
     const userData = await this.Model.create({
       nickname, 
-      password, 
-      address, 
+      password,       
       email, 
       phoneNumber, 
       admin
-    });
-    return userData;
+  });
+    return userData.dataValues.id;
   }
 
   }
-}
+
 
 module.exports = AuthRepository;
 
