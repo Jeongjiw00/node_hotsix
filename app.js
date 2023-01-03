@@ -18,19 +18,18 @@ app.use(express.static(__dirname + "/views")); //정적파일, 이미지파일
 //   res.render("index_jw.ejs");
 // });
 
-app.get("/laundry", (req, res) => {
-  res.render("index_jw.ejs");
-});
+// app.get("/laundry", (req, res) => {
+//   res.render("index_jw.ejs");
+// });
 
-//마이페이지 
-app.get("/myPage", (req, res) => {
-  res.render("index_jg.ejs");
-});
+// //마이페이지 
+// app.get("/userMyPage", (req, res) => {
+//   res.render("userMyPage.ejs");
+// });
 
 //라우터,json
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use("/", router);
+app.use('/', express.urlencoded({ extended: false }), router); 
 
 //포트설정
 app.listen(port, () => {
