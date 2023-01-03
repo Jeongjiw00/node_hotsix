@@ -44,7 +44,13 @@
       />
     </div>
     <div>
-      <input type="file" class="form-control" id="laundryImg" name="file" />
+      <input
+        type="file"
+        class="form-control"
+        id="laundryImg"
+        name="file"
+        required
+      />
     </div>
   </div>
   <div class="button_container">
@@ -61,6 +67,16 @@
     let requests = $("#requests").val();
 
     let file = document.getElementById("laundryImg").files[0];
+
+    if (
+      !laundryName ||
+      !laundryContent ||
+      !laundryAddress ||
+      !laundryImg ||
+      !file
+    ) {
+      return customAlert("요청사항을 제외한 모든 요소는 필수입니다!");
+    }
 
     const formdata = new FormData();
     formdata.append("file", file);
@@ -92,10 +108,14 @@
       url: "/api/points/change",
       async: false,
       success: function (response) {
-        if (response.data.changePoint >= 10000) {
+        console.log(response.data.changePoint);
+        if (response.data.changePoint >= 0) {
           customAlert("세탁신청이 완료되었습니다!");
           //로그인구현되면 변경해야함~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
           window.location.replace("/laundry/1");
+        } else {
+          customAlert("포인트가 부족합니다!");
+          return;
         }
       },
       error: function (error) {
