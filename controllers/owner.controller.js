@@ -1,12 +1,5 @@
 const OwnerService = require("../services/owner.service");
 
-console.log(OwnerService);
-
-a = new OwnerService();
-
-console.log(a);
-console.log(a.getAllLaundries());
-
 class OwnerController{
 
     ownerService = new OwnerService();    
