@@ -1,9 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap");
+
 table {
-  width: 700px;
+  width: auto;
   text-align: center;
   border: 1px solid #fff;
   border-spacing: 1px;
-  font-family: "Cairo", sans-serif;
+  font-family: "Do Hyeon", sans-serif;
   margin: auto;
 }
 

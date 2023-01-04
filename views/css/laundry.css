@@ -1,9 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap");
+
+.container {
+  width: 40%;
+}
 .applyForm {
   display: flex;
   flex-direction: column;
   justify-content: center;
   border: 1px solid white;
   padding: 20px;
+  font-family: "Do Hyeon", sans-serif;
 }
 
 .button_container {
@@ -11,6 +17,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  font-family: "Do Hyeon", sans-serif;
 }
 
 .btn {
@@ -26,6 +33,6 @@
   font-weight: 80%;
   font-size: 15px;
   background-color: #fff;
-  margin: 5px auto;
+  margin: 10px 20px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
