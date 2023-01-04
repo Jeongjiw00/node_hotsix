@@ -1,39 +1,33 @@
-const jwt = require('jsonwebtoken');
-const AuthRepository = require('../repositories/auth.repository')
+const jwt = require("jsonwebtoken");
+const { user } = require("../models");
 
-class IsAuth {
-    // jwtSecretKey = '9b3d1ec002d459170e7a09e04c72e7d57c78038e3468cb49971112c847128e7f' 
-    // AUTH_ERROR = { message: 'Authentication Error' };
+module.exports = async (req, res, next) => {
+  try {
+    const accessToken = req.cookies.accessToken;
 
-    authRepository = new AuthRepository();
-
-    isAuth = async (req, res, next) => {
-      if(!req.cookies.token) {
-        return res.status(401).json({ message: "Authentication Error"})
-      }
-
-      // 보낸 쿠키
-      const authToken = req.cookies.token;
-    // const authHeader = req.get('Authorization');
-    // if (!(authHeader && authHeader.startsWith('Bearer '))) {
-    //   return res.status(401).json(AUTH_ERROR);
-    // }
-    // const token = authHeader.split(' ')[1];
-
-    try {
-      // 복호화 검증
-    const { userId } = jwt.verify(token, "9b3d1ec002d459170e7a09e04c72e7d57c78038e3468cb49971112c847128e7f");
-    const user = await this.authRepository.findById(userId);
-      res.locals.user = user;
-      console.log(user);
-      next();
-    } catch(error) {
-      res.status(400).json({ message: 'Authentication Error' });
+    //토큰이 존재하지 않을떄
+    if (!accessToken) {
+      res.locals.user = {};
+      return next();
     }
-    // console.log(user)
+    const { userId } = jwt.verify(
+      accessToken,
+      "my-secrect-key" //secretkey
+    );
 
-    return;
+    const allUser = await user.findById(userId);
+    console.log(allUser);
+    const Id = allUser.id;
+    const admin = allUser.admin;
+    const nickname = allUser.nickname;
+
+    res.locals.user = { Id, admin, nickname };
+    console.log(user);
+    next();
+  } catch (error) {
+    console.log(error);
+    // 쿠키삭제
+    res.clearCookie("accessToken");
+    return res.status(500).json({ message: error });
   }
-}
-
-module.exports = IsAuth;
+};

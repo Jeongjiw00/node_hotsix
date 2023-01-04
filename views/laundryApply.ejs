@@ -54,7 +54,7 @@
     </div>
   </div>
   <div class="button_container">
-    <input class="btn" type="button" value="세탁신청" onclick=" apply()" />
+    <input class="btn" type="button" value="세탁신청" onclick=" minusPoint()" />
     <button class="btn" type="button" onclick="location.href='/'">닫기</button>
   </div>
 </div>
@@ -96,7 +96,7 @@
       success: function (response) {
         customAlert("세탁신청이 완료되었습니다!");
         //로그인구현되면 변경해야함~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        window.location.replace("/laundry/1");
+        window.location.replace("/laundry");
       },
       error: function (response) {
         customAlert(error.responseJSON.errorMessage);

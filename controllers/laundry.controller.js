@@ -5,7 +5,8 @@ class LaundryController {
 
   getApplyById = async (req, res, next) => {
     //아직 로그인기능 없어서 임의로 해둠
-    const { id } = req.params;
+    const id = 1;
+    // console.log(res.locals.user);
 
     const laundry = await this.laundryService.findApplyById(id);
 
@@ -17,7 +18,8 @@ class LaundryController {
       const { laundryName, laundryContent, laundryAddress, requests } =
         req.body;
       // console.log(laundryName, laundryContent, laundryAddress, requests);
-      const laundryImg = req.file.path;
+      const imgPath = req.file.path;
+      const laundryImg = imgPath.split("\\")[2];
 
       //아직 로그인기능 없어서 임의로 해둠
       const id = 1;
@@ -36,6 +38,7 @@ class LaundryController {
 
       res.status(201).json({ data: createApplyData });
     } catch (error) {
+      console.log(error, 4564);
       res.status(400).json({ errorMessage: error.message });
     }
   };
