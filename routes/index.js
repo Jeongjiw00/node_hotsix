@@ -20,4 +20,7 @@ router.use("/review", reviewRouter);
 const ownerRouter = require("./owner.routes");
 router.use("/owner", ownerRouter);
 
+const ownerTestRouter = require("./ownerTest.routes");
+router.use("/ownerTest", ownerTestRouter);
+
 module.exports = router;

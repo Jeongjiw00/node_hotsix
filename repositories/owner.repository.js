@@ -2,24 +2,42 @@ const { laundry: Laundry } = require("../models");
 const { Op } = require("sequelize");
 
 class OwnerRepository{
-    async getAllPendingLaundries(){
+
+
+    //미사용 (대기중인 세탁물들만 조회)
+    // async getAllPendingLaundries(){
+
+    //     try{
+    //         const laundries = await Laundry.findAll({
+    //             where: { status: 0, adminId: null }
+    //         });
+    //     } catch (err){
+    //         console.log(err);
+    //         return false;
+    //     }        
+
+    //     return laundries;
+    // }
+
+    async getAllLaundries(){
 
         try{
-            const laundries = await Laundry.findAll({
-                where: { status: 0, adminId: null }
+            const laundries = await Laundry.findAll({                
             });
+            return laundries;
         } catch (err){
             console.log(err);
             return false;
         }        
 
-        return laundries;
+        
     }
 
+    
     async getALaundryFromPendings(laundryId){
 
         try{
-            const laundry = await Laundry.findOne({
+            const laundry = await Laundry.findAll({
                 where:{ status: 0, adminId: null, laundryId}
             })
 
@@ -36,7 +54,7 @@ class OwnerRepository{
 
         try{
             await Laundry.update({
-                adminId: userId}, {where: {laundryId}
+                adminId: userId}, {where: {laundryId, adminId: null}
             });
         } catch (err){
             console.log(err);
@@ -61,14 +79,19 @@ class OwnerRepository{
         
     }
 
-    async changeLaundryStatus(laundryId, userId){
+    async changeALaundryStatus(userId){
         try{
-            await Laundry.update({})
+            await Laundry.increment(
+                {status: 1}, 
+                {where: {adminId: userId, status: {[Op.lt]: 4}}}
+                );
+            return true;
         } catch (err) {
-
+            console.log(err);
+            return false;
         }
     }
-
-
    
 }
+
+module.exports = OwnerRepository;
