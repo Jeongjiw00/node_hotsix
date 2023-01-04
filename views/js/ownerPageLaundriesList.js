@@ -26,10 +26,12 @@ $(document).ready(function (){
                     if(rows[i].status > 3){
                         tempHtml += `<div>${rows[i].laundryName} ${statusArray[rows[i].status]} 
                     </div>`;
+                    }else{
+                        
+                        tempHtml += `<div onclick="chooseALaundryFromPendings(${rows[i].laundryId})">${rows[i].laundryName} ${statusArray[rows[i].status]} 
+                        </div>`;
                     }
 
-                    tempHtml += `<div onclick="chooseALaundryFromPendings(${rows[i].laundryId})">${rows[i].laundryName} ${statusArray[rows[i].status]} 
-                    </div>`;
                 }
 
                 $('#ownerPageLaundriesList').append(tempHtml);
