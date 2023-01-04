@@ -27,14 +27,16 @@ router.use("/owner", ownerPointRouter);
 const pointChangeRouter = require("./pointChange.routes");
 router.use("/points", pointChangeRouter);
 //로그인
-const loginRouter = require("./login.routes");
-router.use("/login", loginRouter);
-//회원가입
-const signUpRouter = require("./signUp.routes");
-router.use("/signUp", signUpRouter);
+const authRouter = require("./auth.routes");
+router.use("/auth", authRouter);
+// //회원가입
+// const signUpRouter = require("./signUp.routes");
+// router.use("/signUp", signUpRouter);
 //리뷰관련
 const reviewRouter = require("./review.routes");
 router.use("/review", reviewRouter);
->>>>>>> dev
+//사장님페이지관련
+const ownerRouter = require("./owner.routes");
+router.use("/owner", ownerRouter);
 
 module.exports = router;

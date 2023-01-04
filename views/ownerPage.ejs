@@ -11,10 +11,6 @@
       href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap"
       rel="stylesheet"
     />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap"
-      rel="stylesheet"
-    />
     <!-- CSS only -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
@@ -55,14 +51,21 @@
       }
     </script> -->
 
-    <title>bubble bubble</title>
+    <title>laundry</title>
   </head>
   <body>
     <!-- header -->
     <header><%- include('header.ejs') %></header>
     <!-- body -->
-    <% if(test) { %> <%- include('applyById.ejs') %> <% }else{ %> <%-
-    include('laundryApply.ejs') %> <% } %>
+    <%
+    if (temp == 0){ %>
+        <%- include('ownerPageIndex.ejs') %> <%
+    } else if ( temp == 1 ){ %>
+        <%- include('ownerPageLaundriesList.ejs') %> <%
+    } else { %>
+        <%- include('ownerPageLaundry.ejs') %> <%
+    } %>
+    
     <!-- modal -->
     <%- include('modal.ejs') %>
   </body>
