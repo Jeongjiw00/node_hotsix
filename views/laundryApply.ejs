@@ -1,14 +1,4 @@
-<<<<<<< HEAD
-<form
-  class="container"
-  id="file_form"
-  action="/api/laundry/apply"
-  method="post"
-  enctype="multipart/form-data"
->
-=======
 <div class="container" id="file_form">
->>>>>>> origin/feature/laundry_user
   <div class="applyForm">
     <div class="mb-3">
       <label for="laundryName" class="form-label">세탁물 이름</label>
@@ -54,24 +44,16 @@
       />
     </div>
     <div>
-      <input type="file" class="form-control" id="laundryImg" name="file" />
+      <input
+        type="file"
+        class="form-control"
+        id="laundryImg"
+        name="file"
+        required
+      />
     </div>
   </div>
   <div class="button_container">
-<<<<<<< HEAD
-    <input class="btn" type="submit" value="세탁신청" onclick="apply()" />
-    <button class="btn" type="button" onclick="location.href='/'">닫기</button>
-  </div>
-</form>
-
-<script>
-  function apply() {
-    if (error) {
-      customAlert(error.responseJSON.errorMessage);
-    } else {
-      customAlert("신청되었습니다!");
-    }
-=======
     <input class="btn" type="button" value="세탁신청" onclick=" apply()" />
     <button class="btn" type="button" onclick="location.href='/'">닫기</button>
   </div>
@@ -85,6 +67,16 @@
     let requests = $("#requests").val();
 
     let file = document.getElementById("laundryImg").files[0];
+
+    if (
+      !laundryName ||
+      !laundryContent ||
+      !laundryAddress ||
+      !laundryImg ||
+      !file
+    ) {
+      return customAlert("요청사항을 제외한 모든 요소는 필수입니다!");
+    }
 
     const formdata = new FormData();
     formdata.append("file", file);
@@ -102,7 +94,9 @@
       processData: false,
       enctype: "multipart/form-data",
       success: function (response) {
-        minusPoint();
+        customAlert("세탁신청이 완료되었습니다!");
+        //로그인구현되면 변경해야함~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        window.location.replace("/laundry/1");
       },
       error: function (response) {
         customAlert(error.responseJSON.errorMessage);
@@ -116,17 +110,18 @@
       url: "/api/points/change",
       async: false,
       success: function (response) {
-        if (response.data.changePoint >= 10000) {
-          customAlert("세탁신청이 완료되었습니다!");
-          //로그인구현되면 변경해야함~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-          window.location.replace("/laundry/1");
+        console.log(response.data.changePoint);
+        if (response.data.changePoint >= 0) {
+          apply();
+        } else {
+          customAlert("포인트가 부족합니다!");
+          return;
         }
       },
       error: function (error) {
         customAlert(error.responseJSON.errorMessage);
       },
     });
->>>>>>> origin/feature/laundry_user
   }
 
   function customAlert(text) {

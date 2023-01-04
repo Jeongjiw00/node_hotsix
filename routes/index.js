@@ -16,5 +16,8 @@ router.use("/auth", authRouter);
 //리뷰관련
 const reviewRouter = require("./review.routes");
 router.use("/review", reviewRouter);
+//사장님페이지관련
+const ownerRouter = require("./owner.routes");
+router.use("/owner", ownerRouter);
 
 module.exports = router;
