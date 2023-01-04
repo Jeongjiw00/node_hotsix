@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+
       //foreignKey변경함 승훈님꼐 말씀드리기
       models.laundry.belongsTo(models.user, { foreignKey: "userId" }); //id
       models.laundry.belongsTo(models.user, { foreignKey: "adminId" }); //id

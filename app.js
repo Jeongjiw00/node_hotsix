@@ -37,10 +37,12 @@ app.get("/owner/laundry", (req, res) => {
 //   res.render("index_jw.ejs");
 // });
 
+
 //라우터,json
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/api", router);
+
 
 //포트설정
 app.listen(port, () => {
