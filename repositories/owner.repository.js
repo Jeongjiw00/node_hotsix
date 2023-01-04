@@ -54,7 +54,7 @@ class OwnerRepository{
 
         try{
             await Laundry.update({
-                adminId: userId}, {where: {laundryId, adminId: null}
+                adminId: userId, status: 1}, {where: {laundryId, adminId: null}
             });
         } catch (err){
             console.log(err);
