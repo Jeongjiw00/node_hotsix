@@ -1,4 +1,5 @@
-// const { user: User } = require("../models");
+
+const { Sequelize, QueryTypes } = require('sequelize');
 
 class AuthRepository {
   constructor(Model) {
@@ -10,13 +11,12 @@ class AuthRepository {
     return userNickname;
 
     // const a = await this.Model.findById({})
-
-    return "oo";
   };
 
-  findById = async (id) => {
-    const userId = await this.Model.findAll({ where: { id: id } });     
-    return userId;
+  findById = async (userId) => {
+    const user = await this.Model.findAll({ where: { id: userId } });
+    // findByPk(userId);
+    return user;
   };
 
   createUser = async (

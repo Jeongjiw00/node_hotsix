@@ -11,7 +11,9 @@ router.post('/signup', authController.signup);
 
 router.post('/login', authController.login);
 
-// 실험용
-router.get('/me', auth.isAuth, authController.me)
+router.get('/logout', authController.logout);
+
+// // 실험용
+// router.get('/me', auth.isAuth, authController.me)
 
 module.exports = router;

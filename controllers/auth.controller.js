@@ -16,7 +16,7 @@ class AuthController {
 
   signup = async (req, res, next) => {
     const { nickname, password, email, phoneNumber, admin} = req.body;
-    const found = await this.authRepository.findByNickname(nickname);  
+    const found = await this.authRepository.findByNickname(nickname);
     if ( found.length > 0) {
       return res.status(409).json({ message: `${nickname} is already exists`});
     }
@@ -27,47 +27,46 @@ class AuthController {
       phoneNumber,
       admin,
     )
-    
-    const token = jwt.sign({ userId }, jwtSecretKey, {expiresIn: expiresInSec,
-      });
-    
-    // createJwtToken(userId)
-    res.status(201).json({ token, nickname });
+    res.status(201).json({ message: "signup success!" });
   }
   // 로그인
 
   login = async (req, res) => {
     const {nickname, password} = req.body;
     const [user] = await this.authRepository.findByNickname(nickname);
-    const dbPw = user.dataValues.password
     if (!user) {
       return res.status(401).json({ message: 'Invalid user or password'});
     }
+    const dbPw = user.dataValues.password
     const isValidPassword = await bcrypt.compare(password, dbPw);
     if(!isValidPassword) {
       return res.status(401).json({ message: 'Invalid user or password'});
     }
     const userId = user.dataValues.id
+    const userNickname = user.dataValues.nickname
+    const adminNum = user.dataValues.admin
+
+    // token 생성
     const token = jwt.sign(
-      {userId}, 
+      {userId, userNickname, adminNum}, 
       jwtSecretKey, {expiresIn: expiresInSec,
-      }); // 뭘로만들건지? user id
-    res.status(200).json({ token, nickname });
+      }); 
+    // 쿠키에 토큰 담아서 보내기 
+    res.cookie('token', token, {httpOnly: true,secure: true});
+    res.status(200).json({ message: "login success!"})
   }
 
-  me = async (req, res) => {
-    const [user] = await this.authRepository.findById(nickname);
-    console.log(user);
+  logout = async (req, res) => {
+    res.clearCookie('token');
+    res.json({ message: 'logout success'});
+    // return res.redirect("/"); // 로그인 페이지로
   }
-
-  // jwt 토큰생성 함수
-  //data로 임시 input 설정
-  // createJwtToken(id) {
-    // return jwt.sign(
-      // {id}, 
-      // jwtSecretKey, {expiresIn: expiresInSec,
-      // });
-  // }
 }
+
+// me = async (req, res) => {
+  //   const [user] = await this.authRepository.findById(nickname);
+  //   console.log(user);
+  //   res.status(200).json({ message: "success"});
+  // }
 
 module.exports = AuthController;
