@@ -27,6 +27,9 @@ class OwnerController{
         // const userId = res.locals.a.userId;
         const userId = 2;
 
+        console.log(laundryId);
+        console.log(typeof(laundryId));
+        // console.log(typeOf(laundryId));
         const msg = await this.ownerService.chooseALaundryfromPendings(laundryId, userId);
 
         return res.status(200).send({msg});

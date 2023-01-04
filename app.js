@@ -22,6 +22,16 @@ app.get("/laundry/:id", (req, res) => {
   res.render("index_jw.ejs", { test: true });
 });
 
+app.get("/owner", (req, res) => {
+  res.render("ownerPage.ejs", { temp: 0 });
+})
+app.get("/owner/laundries", (req, res) => {
+  res.render("ownerPage.ejs", { temp: 1 });
+})
+app.get("/owner/laundry", (req, res) => {
+  res.render("ownerPage.ejs", { temp: 2 });
+})
+
 //메인페이지 나중에 변경해야함~
 // app.get("/", (req, res) => {
 //   res.render("index_jw.ejs");
