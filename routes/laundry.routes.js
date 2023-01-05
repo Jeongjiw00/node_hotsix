@@ -9,7 +9,12 @@ const laundryController = new LaundryController();
 const { upload } = require("../multer.js");
 
 // router.get('/', registerController.getPosts);
-router.post("/apply", upload.single("file"), laundryController.createApply);
-router.get("/", laundryController.getApplyById);
+router.post(
+  "/apply",
+  upload.single("file"),
+  authMiddleware,
+  laundryController.createApply
+);
+router.get("/", authMiddleware, laundryController.getApplyById);
 
 module.exports = router;

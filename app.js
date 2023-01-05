@@ -1,6 +1,7 @@
 const express = require("express");
 const ejs = require("ejs");
-const authMiddleware = require("./middleware/auth");
+const loginMiddleware = require("./middleware/loginCheck");
+const cookieParser = require("cookie-parser");
 
 const { upload } = require("./multer.js");
 // const { Laundry, User } = require("./models");
@@ -10,18 +11,30 @@ const { urlencoded } = require("express");
 const app = express();
 const port = 4000;
 
+app.use(cookieParser());
+
 //ejs설정
 app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
 app.use(express.static(__dirname + "/views")); //정적파일, 이미지파일
 
 // 유저 마이 페이지
-app.get("/user", (req, res) => {
-  res.render("userMyPage.ejs");
+app.get("/user", loginMiddleware, (req, res) => {
+  if (res.locals.user) {
+    return res.render("userMyPage.ejs");
+  } else {
+    console.log(res.locals.user);
+    return res.render("logIn.ejs");
+  }
 });
 
-app.get("/owner", (req, res) => {
-  res.render("ownerMyPage.ejs");
+app.get("/owner", loginMiddleware, (req, res) => {
+  if (res.locals.user) {
+    return res.render("ownerMyPage.ejs");
+  } else {
+    console.log(res.locals.user);
+    return res.render("logIn.ejs");
+  }
 });
 
 // 유저가 빨래 신청 ejs 연결
@@ -33,9 +46,11 @@ app.get("/laundry", async (req, res) => {
   res.render("index_jw.ejs", { test: true });
 });
 
+// 사장-모든 신청목록들 불러오기
 app.get("/owner/laundries", (req, res) => {
   res.render("ownerPage.ejs", { temp: 1 });
 });
+// 사장-자기가 받은 세탁물 보기
 app.get("/owner/laundry", (req, res) => {
   res.render("ownerPage.ejs", { temp: 2 });
 });

@@ -72,7 +72,11 @@ class AuthController {
       }
 
       const accessToken = jwt.sign(
-        { userId: user.id, userNickname: user.nickname, admin: user.admin },
+        {
+          userId: user[0].id,
+          userNickname: user[0].nickname,
+          admin: user[0].admin,
+        },
         "my-secrect-key", //비밀키
         { expiresIn: "1d" }
       );

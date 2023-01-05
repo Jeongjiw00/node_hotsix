@@ -4,13 +4,15 @@ const { user } = require("../models");
 module.exports = async (req, res, next) => {
   const { cookie } = req.headers;
   if (!cookie) {
-    return res.status(401).json({ message: "로그인 후 이용가능합니다." });
+    res.locals.user = false;
+    next();
+    return;
   }
+
   const [authType, authToken] = cookie.split("=");
   if (!authToken || authType !== "accessToken") {
-    res.status(401).send({
-      message: "로그인 후 이용가능합니다.",
-    });
+    res.locals.user = false;
+    next();
     return;
   }
   try {
@@ -19,14 +21,15 @@ module.exports = async (req, res, next) => {
       "my-secrect-key" //secretkey
     );
 
+    console.log(userId, 84561324515465);
+
     user.findByPk(userId).then((user) => {
       res.locals.user = user;
       next();
     });
   } catch (error) {
     console.log(error);
-    // // 쿠키삭제
-    // res.clearCookie("accessToken");
-    return res.status(401).json({ message: "로그인 후 이용가능합니다!" });
+    res.locals.user = false;
+    next();
   }
 };

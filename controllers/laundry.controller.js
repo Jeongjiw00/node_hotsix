@@ -6,7 +6,7 @@ class LaundryController {
   getApplyById = async (req, res, next) => {
     //아직 로그인기능 없어서 임의로 해둠
     const id = res.locals.user.id;
-    console.log(res.locals.user, 84561234512);
+    // console.log(res.locals.user.id, 84561234512);
 
     const laundry = await this.laundryService.findApplyById(id);
 
@@ -22,7 +22,7 @@ class LaundryController {
       const laundryImg = imgPath.split("\\")[2];
 
       //아직 로그인기능 없어서 임의로 해둠
-      const id = 1;
+      const id = res.locals.user.id;
 
       if (!laundryName || !laundryContent || !laundryAddress || !laundryImg)
         throw new Error("InvalidParamsError");
@@ -38,7 +38,7 @@ class LaundryController {
 
       res.status(201).json({ data: createApplyData });
     } catch (error) {
-      console.log(error, 4564);
+      // console.log(error, 4564);
       res.status(400).json({ errorMessage: error.message });
     }
   };

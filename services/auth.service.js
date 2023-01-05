@@ -10,7 +10,13 @@ class AuthService {
     console.log(userByEmail);
 
     return userByEmail.map((user) => {
-      return { password: user.password, email: user.email };
+      return {
+        id: user.id,
+        nickname: user.nickname,
+        password: user.password,
+        email: user.email,
+        admin: user.admin,
+      };
     });
   };
 
