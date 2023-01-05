@@ -55,9 +55,9 @@
       if( admin == 0 ){ %>
         <%- include('userMenu.ejs') %> <%
       } else  { if( list == 0 ) { %>
-                <%- include('ownerPageLaundry') %> <%
+                <%- include('ownerPageLaundry.ejs') %> <%
               } else if ( list == 1 ) { %>
-                <%- include('ownerPageLaundries') %> <%
+                <%- include('ownerPageLaundriesList.ejs') %> <%
               } else { %>
                 <%- include('ownerMenu.ejs') %> <%
               }       

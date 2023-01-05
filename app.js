@@ -24,19 +24,24 @@ app.use(express.static(__dirname + "/views")); //정적파일, 이미지파일
 
 app.get("/user", loginMiddleware, (req, res) => {
   if (res.locals.user) {
-    return res.render("userMyPage.ejs");
+    if(res.locals.user.admin === 0){
+      return res.render("userMyPage.ejs", {admin: 0, list: -1});
+    }else{
+      return res.render("userMyPage.ejs", {admin: 1, list: -1});
+    }   
+    
   } else {
     return res.render("logIn.ejs");
   }
 });
 
-app.get("/owner", loginMiddleware, (req, res) => {
-  if (res.locals.user) {
-    return res.render("ownerMyPage.ejs");
-  } else {
-    return res.render("logIn.ejs");
-  }
-});
+// app.get("/owner", loginMiddleware, (req, res) => {
+//   if (res.locals.user) {
+//     return res.render("ownerMyPage.ejs");
+//   } else {
+//     return res.render("logIn.ejs");
+//   }
+// });
 
 // 유저가 빨래 신청 ejs 연결
 app.get("/laundry/apply", async (req, res) => {
@@ -50,11 +55,11 @@ app.get("/laundry", async (req, res) => {
 
 // 사장-모든 신청목록들 불러오기
 app.get("/owner/laundries", (req, res) => {
-  res.render("userMyPage.ejs", { temp: 1 });
+  return res.render("userMyPage.ejs", {admin: 1, list: 1});
 });
 // 사장-자기가 받은 세탁물 보기
 app.get("/owner/laundry", (req, res) => {
-  res.render("userMyPage.ejs", { temp: 2 });
+  return res.render("userMyPage.ejs", {admin: 1, list: 0});
 });
 
 // 로그인 페이지 ejs 연결

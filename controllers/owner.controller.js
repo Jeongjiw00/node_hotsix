@@ -24,8 +24,7 @@ class OwnerController{
     chooseALaundryFromPendings = async (req, res, next) => {
 
         const { laundryId } = req.params;
-        // const userId = res.locals.a.userId;
-        const userId = 2;
+        const userId = res.locals.user.id;        
 
         console.log(laundryId);
         console.log(typeof(laundryId));
@@ -37,8 +36,7 @@ class OwnerController{
 
     getALaundryInProgress = async (req, res, next) => {
 
-        // const userId = res.locals.a.userId;
-        const userId = 2;
+        const userId = res.locals.user.id;        
 
         const laundry = await this.ownerService.getALaundryInProgress(userId);
 
@@ -48,8 +46,7 @@ class OwnerController{
 
     changeALaundryStatus = async (req, res, next) => {
         
-        // const userId = res.locals.a.userId;
-        const userId = 2;
+        const userId = res.locals.user.id;
 
         const msg = await this.ownerService.changeALaundryStatus(userId);       
 
