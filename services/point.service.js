@@ -1,4 +1,4 @@
-const PointRepository = require("../repositories/point.repository");
+const PointRepository = require('../repositories/point.repository');
 
 class PointService {
   pointRepository = new PointRepository();

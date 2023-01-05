@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   review.init(
     {
-      reiewId: {
+      reviewId: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
