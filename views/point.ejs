@@ -1,4 +1,29 @@
 <div class="pointBox">
-    <p class="pointText">POINT : <span class="pointAmount" ><%= point %></span></p>
+  <p class="pointText">
+    POINT :
+    <span id="pointAmount"> </span>
+  </p>
 </div>
+<script>
+  $(document).ready(function () {
+    $.ajax({
+      type: "GET",
+      url: "/api/point",
+      async: false,
+      success: function (response) {
+        if (response.data) {
+          const point = response.data.point;
+
+          let temp = `${point}`;
+          $("#pointAmount").append(temp);
+        }
+        return;
+      },
+
+      error: function (error) {
+        customAlert(error.responseJSON.errorMessage);
+      },
+    });
+  });
+</script>
 
