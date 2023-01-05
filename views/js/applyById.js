@@ -1,7 +1,7 @@
 $(document).ready(function () {
   $.ajax({
     type: "GET",
-    url: "/api/laundry",
+    url: "/api/laundry/",
     async: false,
     success: function (response) {
       if (response.data) {

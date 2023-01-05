@@ -1,41 +1,138 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ko">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.108.0">
-    <title>Login</title>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap"
+      rel="stylesheet"
+    />
+    <script src="/./js/header.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.1.min.js"
+      integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.0.8/css/all.css"
+    />
+
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.js"
+      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
+      integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- css -->
     <link rel="stylesheet" href="/./css/normalize.css" />
     <link rel="stylesheet" href="/./css/sign-in.css" />
-
+    <link rel="stylesheet" href="/./css/modal.css" />
+    <title>Log in</title>
   </head>
+
   <body class="text-center">
     <main class="form-signin w-100 m-auto">
-      <form>
-            <div class="bubbles">
-              <h1>Bubble Bubble</h1>
+      <div>
+        <div class="bubbles">
+          <h1>Bubble Bubble</h1>
         </div>
         <div class="form-floating">
-          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-          <label for="floatingInput"></label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="name@example.com"
+          />
+          <label for="email"></label>
         </div>
         <div class="form-floating">
-          <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-          <label for="floatingPassword"></label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="Password"
+          />
+          <label for="password"></label>
         </div>
-        <button class="w-100 btn btn-lg btn-info" type="submit">Login</button>
-        <button type="button" class="btn btn-link" onclick="location.href='/signUp'">회원이 아니신가요??</button>
-      </form>
+        <button
+          class="w-100 btn btn-lg btn-info"
+          type="button"
+          onclick="login()"
+        >
+          Login
+        </button>
+        <button
+          type="button"
+          class="btn btn-link"
+          onclick="location.href='/signUp'"
+        >
+          회원이 아니신가요??
+        </button>
+      </div>
     </main>
-    
-    <script src="/./js/header.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
-        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <!-- modal -->
+    <%- include('modal.ejs') %>
   </body>
 </html>
+<script>
+  function login() {
+    let email = $("#email").val();
+    let password = $("#password").val();
+
+    if (!email || !password) {
+      return customAlert("이메일과 패스워드를 넣어주세요");
+    }
+
+    $.ajax({
+      type: "POST",
+      url: "/api/auth/login",
+      data: {
+        email: email,
+        password: password,
+      },
+      success: function (response) {
+        customAlert("로그인 완료!");
+        //로그인구현되면 변경해야함~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        window.location.replace("/user"); //사장인지 유저인지 구분해서
+      },
+      error: function (response) {
+        customAlert("에러가 났습니다");
+      },
+    });
+  }
+
+  function customAlert(text) {
+    $("#alertText").text(text);
+    $("#alertModal").modal("show");
+  }
+</script>
