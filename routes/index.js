@@ -9,9 +9,6 @@ router.use("/laundry", laundryRouter);
 const pointRouter = require("./point.routes");
 router.use("/point", pointRouter);
 
-//포인트 차감기능
-const pointChangeRouter = require("./pointChange.routes");
-router.use("/points", pointChangeRouter);
 //로그인
 const authRouter = require("./auth.routes");
 router.use("/auth", authRouter);
