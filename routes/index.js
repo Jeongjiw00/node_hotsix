@@ -6,12 +6,8 @@ const laundryRouter = require("./laundry.routes");
 router.use("/laundry", laundryRouter);
 
 //유저 포인트 조회
-const userPointRouter = require("./userPoint.routes");
-router.use("/user", userPointRouter);
-
-//사장님 포인트 조회
-const ownerPointRouter = require("./ownerPoint.routes");
-router.use("/owner", ownerPointRouter);
+const pointRouter = require("./point.routes");
+router.use("/point", pointRouter);
 
 //포인트 차감기능
 const pointChangeRouter = require("./pointChange.routes");

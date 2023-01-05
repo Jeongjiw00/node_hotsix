@@ -4,7 +4,7 @@ class PointController {
   PointService = new PointService();
 
   changePoint = async (req, res) => {
-    const id = 1;
+    const id = res.locals.user.id;
 
     const changePoint = await this.PointService.changePointById(id);
 

@@ -107,7 +107,7 @@
   function minusPoint() {
     $.ajax({
       type: "PUT",
-      url: "/api/points/change",
+      url: "/api/point/change",
       async: false,
       success: function (response) {
         console.log(response.data.changePoint);
