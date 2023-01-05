@@ -17,6 +17,10 @@ class OwnerService{
             return {
                 laundryId: laundry.laundryId,
                 laundryName: laundry.laundryName,
+                laundryContent: laundry.laundryContent,
+                laundryAddress: laundry.laundryAddress,
+                laundryImg: laundry.laundryImg,
+                requests: laundry.requests,
                 status: laundry.status,
             };
         });
