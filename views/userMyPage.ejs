@@ -59,8 +59,22 @@
     <!-- nav -->
     <nav><%- include('point.ejs') %></nav>
     <!-- Menu -->
-    <main><%- include('userMenu.ejs') %></main>
+    <main>
+      <%
+      if( admin == 0 ){ %>
+        <%- include('userMenu.ejs') %> <%
+      } else  { if( list == 0 ) { %>
+                <%- include('ownerPageLaundry') %> <%
+              } else if ( list == 1 ) { %>
+                <%- include('ownerPageLaundries') %> <%
+              } else { %>
+                <%- include('ownerMenu.ejs') %> <%
+              }       
+      } %>
+      
+    </main>
     <!-- logOut -->
     <%- include('logOutBtn.ejs') %>
+  
   </body>
 </html>

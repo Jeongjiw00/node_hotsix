@@ -8,8 +8,10 @@ class PointController {
     console.log("test2")
 //아직 로그인기능 없어서 임의로 해둠!!!!!!!
     const id = 2;
-    const { point } = await this.PointService.findPoint(id);
-    res.render('userMyPage', {point})
+    const { point, admin } = await this.PointService.findPoint(id);
+    console.log(point);
+    
+    res.render('userMyPage', {point, admin});
   }
 }
 

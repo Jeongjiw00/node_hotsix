@@ -9,6 +9,7 @@ class PointService {
 
       return {
         point: point.point,
+        admin: point.admin,
       }
   }
 }

@@ -41,6 +41,7 @@ $(document).ready(function (){
 })
 
 function chooseALaundryFromPendings(laundryId){
+    
     $.ajax({
         type: "POST",
         url: "../api/owner/laundry/" + laundryId,
