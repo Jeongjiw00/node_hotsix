@@ -15,7 +15,7 @@ $(document).ready(function (){
 
             if (response['laundry']['msg']){
 
-                tempHtml = response['laundry']['msg'];
+                tempHtml = `<tr><td>${response['laundry']['msg']}</td></tr>`;
                 $('#ownerPageLaundry').append(tempHtml);
 
             } else {
@@ -25,20 +25,23 @@ $(document).ready(function (){
             //    console.log(laundry);
             //    console.log(laundry.laundryId);
                 
-                tempHtml +=     `<div> 세탁물 번호 ${laundry.laundryId} </div>
-                                 <div> 세탁물 이름 ${laundry.laundryName} </div>
-                                 <div> 세탁물 내용 ${laundry.laundryContent} </div>
-                                 <div> 세탁물 사진 <img src="${laundry.laundryImg}"> </div>
-                                 <div> 주소 ${laundry.laundryAddress} </div>
+                tempHtml +=     `<tr> <td>세탁물 번호  </td> <td>${laundry.laundryId}</td></tr>
+                                 <tr> <td>세탁물 이름 </td> <td>${laundry.laundryName} </td></tr>
+                                 <tr> <td>세탁물 내용 </td> <td>${laundry.laundryContent} </td></tr>
+                                 <tr> <td>세탁물 사진 </td> <td><img src="../images/${laundry.laundryImg}"> </td></tr>
+                                 <tr> <td>주소 </td> <td>${laundry.laundryAddress} </td></tr>
                                  
-                                 <div> 요청사항 ${laundry.requests} </div>
-                                 <div> 작업상태 ${statusArray[laundry.status]} </div>
+                                 <tr> <td>요청사항 </td> <td>${laundry.requests} </td></tr>
+                                 <tr> <td>작업상태 </td> <td>${statusArray[laundry.status]} </td></tr>
 
-                                 <div> 요청일 ${laundry.createdAt} </div>
-                                 <div> 요청자 ${laundry.userId} </div>
-                                 <div> 작업자 ${laundry.adminId} </div>
-                                 <div> <button onclick="changeALaundryStatus()"> 작업상태 변경 </button></div>
-                `;                
+                                 <tr> <td>요청일 </td> <td>${laundry.createdAt} </td></tr>
+                                
+                                
+                                <tr><td colspan='2'> <button onclick="changeALaundryStatus()" style ='background-color: #333; color: white';> 작업상태 변경 </button></td></tr>
+                                
+                               
+                `;               
+
 
                 $('#ownerPageLaundry').append(tempHtml);
             }

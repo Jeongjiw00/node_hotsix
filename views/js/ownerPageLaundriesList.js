@@ -23,15 +23,31 @@ $(document).ready(function (){
 
                 for(let i = 0; i < rows.length; i++){
 
-                    if(rows[i].status > 3){
-                        tempHtml += `<div>${rows[i].laundryName} ${statusArray[rows[i].status]} 
-                    </div>`;
-                    }else{
+                    // if(rows[i].status > 3){
+                    //     tempHtml += `<div>${rows[i].laundryName} ${statusArray[rows[i].status]} 
+                    // </div>`;
+
+                    // }else{
                         
-                        tempHtml += `<div onclick="chooseALaundryFromPendings(${rows[i].laundryId})">${rows[i].laundryName} ${statusArray[rows[i].status]} 
-                        </div>`;
+                    //     tempHtml += `<div onclick="chooseALaundryFromPendings(${rows[i].laundryId})">${rows[i].laundryName} ${statusArray[rows[i].status]} 
+                    //     </div>`;
+                    // }
+
+                    if(rows[i].status < 4){
+                        tempHtml += `<tr class="trHover" onclick="chooseALaundryFromPendings(${rows[i].laundryId})">`;
+                    }else{
+                        tempHtml += `<tr>`;
                     }
 
+                    tempHtml += `   <td>                                        
+                                        <img src="../images/${rows[i].laundryImg}" alt="img" />
+                                    </td>
+                                    <td>${rows[i].laundryName}</td>
+                                    <td>${rows[i].laundryContent}</td>
+                                    <td>${rows[i].laundryAddress}</td>
+                                    <td>${rows[i].requests}</td>
+                                    <td>${statusArray[rows[i].status]}</td>
+                                    </tr>`;
                 }
 
                 $('#ownerPageLaundriesList').append(tempHtml);
@@ -41,6 +57,7 @@ $(document).ready(function (){
 })
 
 function chooseALaundryFromPendings(laundryId){
+    
     $.ajax({
         type: "POST",
         url: "../api/owner/laundry/" + laundryId,
@@ -56,3 +73,5 @@ function chooseALaundryFromPendings(laundryId){
 
     })
 }
+
+

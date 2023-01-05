@@ -1,8 +1,10 @@
 const OwnerRepository = require("../repositories/owner.repository");
+const PointRepository = require("../repositories/point.repository");
 
 class OwnerService{
 
     ownerRepository = new OwnerRepository();
+    pointRepository = new PointRepository();
 
     async getAllLaundries(){
         const laundries = await this.ownerRepository.getAllLaundries();
@@ -15,6 +17,10 @@ class OwnerService{
             return {
                 laundryId: laundry.laundryId,
                 laundryName: laundry.laundryName,
+                laundryContent: laundry.laundryContent,
+                laundryAddress: laundry.laundryAddress,
+                laundryImg: laundry.laundryImg,
+                requests: laundry.requests,
                 status: laundry.status,
             };
         });
@@ -50,13 +56,18 @@ class OwnerService{
 
     async changeALaundryStatus(userId){
 
-        const laundry = await this.ownerRepository.getALaundryInProgress(userId);
+        const laundry = await this.ownerRepository.getALaundryInProgress(userId);        
 
         if(laundry.length < 1) {
             return {msg: "작업중인 세탁물이 없습니다."};
         }
 
+        if(laundry[0].status == 3){
+            console.log("if문");
+            await this.pointRepository.changePointById(userId);
+        }
         await this.ownerRepository.changeALaundryStatus(userId);
+        
         
         return {msg: "작업 상태 변경 성공"};
     }

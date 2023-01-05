@@ -49,3 +49,9 @@ img {
   padding: 0;
   border-bottom: 3px solid #009688;
 }
+
+table > tbody > .trHover:hover {
+  background-color: grey;
+  color: rgba(41, 165, 248, 0.719);
+  cursor: pointer;
+}
