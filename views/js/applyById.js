@@ -1,7 +1,9 @@
 $(document).ready(function () {
+  let { id } = res.locals.user;
+
   $.ajax({
     type: "GET",
-    url: "/api/laundry",
+    url: "/api/laundry/" + id,
     async: false,
     success: function (response) {
       if (response.data) {

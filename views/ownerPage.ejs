@@ -57,15 +57,10 @@
     <!-- header -->
     <header><%- include('header.ejs') %></header>
     <!-- body -->
-    <%
-    if (temp == 0){ %>
-        <%- include('ownerPageIndex.ejs') %> <%
-    } else if ( temp == 1 ){ %>
-        <%- include('ownerPageLaundriesList.ejs') %> <%
-    } else { %>
-        <%- include('ownerPageLaundry.ejs') %> <%
-    } %>
-    
+    <% if (temp == 0){ %> <%- include('ownerPageIndex.ejs') %> <% } else if (
+    temp == 1 ){ %> <%- include('ownerPageLaundriesList.ejs') %> <% } else { %>
+    <%- include('ownerPageLaundry.ejs') %> <% } %>
+
     <!-- modal -->
     <%- include('modal.ejs') %>
   </body>

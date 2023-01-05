@@ -28,6 +28,7 @@ app.get("/owner", (req, res) => {
 app.get("/laundry/apply", async (req, res) => {
   res.render("index_jw.ejs", { test: false });
 });
+//유저별 빨래신청내역
 app.get("/laundry", async (req, res) => {
   res.render("index_jw.ejs", { test: true });
 });

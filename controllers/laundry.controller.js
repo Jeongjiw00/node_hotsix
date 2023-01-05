@@ -5,8 +5,8 @@ class LaundryController {
 
   getApplyById = async (req, res, next) => {
     //아직 로그인기능 없어서 임의로 해둠
-    const id = 1;
-    // console.log(res.locals.user);
+    const id = res.locals.user.id;
+    console.log(res.locals.user, 84561234512);
 
     const laundry = await this.laundryService.findApplyById(id);
 

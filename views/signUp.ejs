@@ -41,7 +41,7 @@
                   </span>
                 </div>
                 <input
-                  id="id"
+                  id="nickname"
                   type="text"
                   class="form-control"
                   placeholder="nickname"
@@ -136,8 +136,8 @@
                 <label for="admin" class="form-label text-light">admin</label>
                 <select class="form-select" id="admin" required>
                   <option value="">Choose...</option>
-                  <option>손놈</option>
-                  <option>사장님</option>
+                  <option value="0">손놈</option>
+                  <option value="1">사장님</option>
                 </select>
               </div>
               <!-- form-group// admin-->
@@ -167,3 +167,37 @@
     <script src="/./js/header.js"></script>
   </body>
 </html>
+<script>
+  function saveAccount() {
+    let userNickname = $("#nickname").val();
+    let password = $("#pwd").val();
+    let rPassword = $("#rePwd").val();
+    let emailAddress = $("#email").val();
+    let phone = $("#phone").val();
+    let a = document.getElementById("admin");
+    let adminNum = a.options[a.selectedIndex].value;
+
+    if (password !== rPassword) {
+      return alert("패스워드체크 다시해주세요");
+    }
+
+    // 손님 사장님 셀렉티드
+    $.ajax({
+      type: "POST",
+      url: "/api/auth/signup",
+      data: {
+        nickname: userNickname,
+        password: password,
+        email: emailAddress,
+        phoneNumber: phone,
+        admin: adminNum,
+      },
+      success: function (response) {
+        window.location.replace("/login");
+      },
+      error: function (response) {
+        alert("에러가 났습니다");
+      },
+    });
+  }
+</script>

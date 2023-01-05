@@ -10,10 +10,8 @@ class AuthController {
   authService = new AuthService();
   // 회원가입(email도 동일하면 안됨!)
   signup = async (req, res, next) => {
-    console.log(res.locals.user, 5645645646);
     try {
       const { nickname, password, email, phoneNumber, admin } = req.body;
-
       if (!nickname || !password || !email || !phoneNumber || !admin) {
         return res.status(400).json({ message: "모든 값을 입력하세요!" });
       }
@@ -25,6 +23,22 @@ class AuthController {
       }
 
       const hashed = await bcrypt.hash(password, 12);
+
+      if (admin === "1") {
+        const point = 0;
+        const createUser = await this.authService.createUser(
+          nickname,
+          hashed,
+          email,
+          phoneNumber,
+          admin,
+          point
+        );
+
+        return res
+          .status(201)
+          .json({ data: createUser, message: "회원가입완료!" });
+      }
 
       const createUser = await this.authService.createUser(
         nickname,
@@ -44,9 +58,13 @@ class AuthController {
   login = async (req, res) => {
     try {
       const { email, password } = req.body;
-      const user = await this.authService.findByEmail(email);
+      // console.log(req.body);
+      // console.log(email);
 
+      const user = await this.authService.findByEmail(email);
+      // console.log(user, 456465);
       const passwordTest = await bcrypt.compare(password, user[0].password);
+      // console.log(passwordTest, 78978978);
       if (user.length === 0 || !passwordTest) {
         return res
           .status(401)
