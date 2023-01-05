@@ -23,7 +23,6 @@ app.get("/user", loginMiddleware, (req, res) => {
   if (res.locals.user) {
     return res.render("userMyPage.ejs");
   } else {
-    console.log(res.locals.user);
     return res.render("logIn.ejs");
   }
 });
@@ -32,7 +31,6 @@ app.get("/owner", loginMiddleware, (req, res) => {
   if (res.locals.user) {
     return res.render("ownerMyPage.ejs");
   } else {
-    console.log(res.locals.user);
     return res.render("logIn.ejs");
   }
 });
