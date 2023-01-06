@@ -19,6 +19,8 @@ class OwnerRepository{
     //     return laundries;
     // }
 
+
+    //사장 빨래들 목록 가져오기
     async getAllLaundries(){
 
         try{

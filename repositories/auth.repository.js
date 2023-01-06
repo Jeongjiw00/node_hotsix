@@ -1,5 +1,4 @@
 
-const { Sequelize, QueryTypes } = require('sequelize');
 
 class AuthRepository {
   constructor(Model) {

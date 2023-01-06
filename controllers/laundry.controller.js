@@ -39,6 +39,23 @@ class LaundryController {
       res.status(400).json({ errorMessage: error.message });
     }
   };
+
+  getUserPoint = async (req, res) => {
+    console.log("test2")
+//아직 로그인기능 없어서 임의로 해둠!!!!!!!
+    const id = 2;
+    const { point } = await this.laundryService.findPoint(id);
+    res.render('userMyPage', {point})
+  };
+
+  changePoint = async (req, res) => {
+      const id = 1;
+  
+      const changePoint = await this.laundryService.changePointById(id);
+  
+      res.status(200).json({ data: changePoint });
+    };
+  
 }
 
 module.exports = LaundryController;

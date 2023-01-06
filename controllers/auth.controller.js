@@ -55,12 +55,6 @@ class AuthController {
     res.cookie('token', token, {httpOnly: true,secure: true});
     res.status(200).json({ message: "login success!"})
   }
-
-  logout = async (req, res) => {
-    res.clearCookie('token');
-    res.json({ message: 'logout success'});
-    // return res.redirect("/"); // 로그인 페이지로
-  }
 }
 
 // me = async (req, res) => {

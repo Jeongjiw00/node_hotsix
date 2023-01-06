@@ -49,6 +49,23 @@ class LaundryService {
       requests: createApplyData.requests,
     };
   };
+
+  findPoint = async (id) => {
+
+    const point = await this.laundryRepository.findPoint(id);
+
+      return {
+        point: point.point,
+      }
+  }
+
+  changePointById = async (id) => {
+    const changePoint = await this.laundryRepository.changePointById(id);
+
+    return {
+      changePoint: changePoint,
+    };
+  };
 }
 
 module.exports = LaundryService;
