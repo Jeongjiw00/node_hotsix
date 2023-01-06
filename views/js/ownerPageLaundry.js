@@ -21,6 +21,9 @@ $(document).ready(function (){
             } else {
 
                let laundry = response['laundry'][0];
+               let day = laundry.createdAt.substr(0, 10);
+               let time = laundry.createdAt.split("T")[1].split(".")[0];
+               
 
             //    console.log(laundry);
             //    console.log(laundry.laundryId);
@@ -34,7 +37,7 @@ $(document).ready(function (){
                                  <tr> <td>요청사항 </td> <td>${laundry.requests} </td></tr>
                                  <tr> <td>작업상태 </td> <td>${statusArray[laundry.status]} </td></tr>
 
-                                 <tr> <td>요청일 </td> <td>${laundry.createdAt} </td></tr>
+                                 <tr> <td>요청일 </td> <td>${day} ${time} </td></tr>
                                 
                                 
                                 <tr><td colspan='2'> <button onclick="changeALaundryStatus()" style ='background-color: #333; color: white';> 작업상태 변경 </button></td></tr>
