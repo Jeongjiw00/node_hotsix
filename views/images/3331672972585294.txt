@@ -1,0 +1,80 @@
+warning: in the working copy of '.idea/inspectionProfiles/profiles_settings.xml', LF will be replaced by CRLF the next time Git touches it
+
+https://cocoon1787.tistory.com/728
+
+
+
+git@github.com: Permission denied (publickey). fatal: Could not read from remote repository.  Please make sure you have the correct access rights and the repository exists.
+
+https://medium.com/@su_bak/git-github-com-permission-denied-publickey-%EC%97%90%EB%9F%AC-%ED%95%B4%EA%B2%B0-%EB%B0%A9%EB%B2%95-76b0ab741c62
+
+
+
+
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'github.com:bunbun92/week1Mini.git'
+
+https://donggu1105.tistory.com/104
+
+
+
+ ! [rejected]        master -> master (non-fast-forward)
+error: failed to push some refs to 'github.com:bunbun92/week1Mini.git'
+
+
+
+
+There is no tracking information for the current branch.
+Please specify which branch you want to merge with.
+See git-pull(1) for details.
+
+    git pull <remote> <branch>
+
+If you wish to set tracking information for this branch you can do so with:
+
+    git branch --set-upstream-to=origin/<branch> master
+
+
+
+
+Merge branch 'master' of github.com:bunbun92/week1Mini
+# Please enter a commit message to explain why this merge is necessary,
+# especially if it merges an updated upstream into a topic branch.
+#
+# Lines starting with '#' will be ignored, and an empty message aborts
+# the commit.
+
+https://jennnn.tistory.com/69
+
+
+
+git pull origin master
+하고 충돌 확인한 뒤에 git add . 하고
+다시 커밋, 후 푸쉬 
+
+
+페이지 이동할떄 서버측에서 창구 열기
+
+
+태그 바꾸기
+
+attr 은 왜 없어? 씨발
+
+
+
+
+git diff
+
+
+
+시간지연 안되는거..
+
+
+
+
+
+https://github.com/boktato/first-project
+진석님
+
+
+
