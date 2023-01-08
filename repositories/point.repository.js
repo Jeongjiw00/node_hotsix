@@ -14,17 +14,16 @@ class PointRepository {
 
     console.log(userById);
 
-    if (userById.admin == 1){
-      console.log("dd");
+    if (userById.admin == 1) {
       await user.update(
         {
-          point: point + 10000
-        },{
-          where: {id}
+          point: point + 10000,
+        },
+        {
+          where: { id },
         }
       );
-    } else{
-
+    } else {
       if (point - 10000 < 0) {
         return point - 10000;
       } else {
@@ -35,7 +34,7 @@ class PointRepository {
           { where: { id: id } }
         );
       }
-    }    
+    }
 
     const newUserById = await user.findByPk(id);
     const newPoint = newUserById.point;

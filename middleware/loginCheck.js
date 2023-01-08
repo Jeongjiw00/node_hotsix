@@ -21,8 +21,6 @@ module.exports = async (req, res, next) => {
       "my-secrect-key" //secretkey
     );
 
-    console.log(userId, 84561324515465);
-
     user.findByPk(userId).then((user) => {
       res.locals.user = user;
       next();

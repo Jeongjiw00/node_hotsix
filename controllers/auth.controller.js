@@ -2,13 +2,9 @@ const AuthService = require("../services/auth.service");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
-// const jwtSecretKey =
-//   "9b3d1ec002d459170e7a09e04c72e7d57c78038e3468cb49971112c847128e7f";
-// const expiresInSec = 86400;
-
 class AuthController {
   authService = new AuthService();
-  // 회원가입(email도 동일하면 안됨!)
+  // 회원가입(email 동일하면 안됨!)
   signup = async (req, res, next) => {
     try {
       const { nickname, password, email, phoneNumber, admin } = req.body;
