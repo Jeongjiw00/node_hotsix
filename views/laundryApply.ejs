@@ -1,10 +1,4 @@
-<form
-  class="container"
-  id="file_form"
-  action="/laundry/apply"
-  method="post"
-  enctype="multipart/form-data"
->
+<div class="container" id="file_form">
   <div class="applyForm">
     <div class="mb-3">
       <label for="laundryName" class="form-label">세탁물 이름</label>
@@ -47,20 +41,89 @@
         id="requests"
         name="requests"
         placeholder="조심히 세탁해주세요"
-        required
       />
     </div>
     <div>
-      <input type="file" class="form-control" id="laundryImg" name="file" />
+      <input
+        type="file"
+        class="form-control"
+        id="laundryImg"
+        name="file"
+        required
+      />
     </div>
   </div>
-  <button type="button" onclick="location.href='/1';">세탁신청</button>
-</form>
-<div>
-  <!-- <button type="button" onclick="apply_laundry()">세탁 신청</button> -->
-  <button type="button" onclick="location.href='/';">닫기</button>
+  <div class="button_container">
+    <input class="btn" type="button" value="세탁신청" onclick=" minusPoint()" />
+    <button class="btn" type="button" onclick="location.href='/'">닫기</button>
+  </div>
 </div>
+
 <script>
+  function apply() {
+    let laundryName = $("#laundryName").val();
+    let laundryContent = $("#laundryContent").val();
+    let laundryAddress = $("#laundryAddress").val();
+    let requests = $("#requests").val();
+
+    let file = document.getElementById("laundryImg").files[0];
+
+    if (
+      !laundryName ||
+      !laundryContent ||
+      !laundryAddress ||
+      !laundryImg ||
+      !file
+    ) {
+      return customAlert("요청사항을 제외한 모든 요소는 필수입니다!");
+    }
+
+    const formdata = new FormData();
+    formdata.append("file", file);
+    formdata.append("laundryName", laundryName);
+    formdata.append("laundryContent", laundryContent);
+    formdata.append("laundryAddress", laundryAddress);
+    formdata.append("requests", requests);
+
+    $.ajax({
+      type: "POST",
+      url: "/api/laundry/apply",
+      data: formdata,
+      cache: false,
+      contentType: false,
+      processData: false,
+      enctype: "multipart/form-data",
+      success: function (response) {
+        customAlert("세탁신청이 완료되었습니다!");
+        //로그인구현되면 변경해야함~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        window.location.replace("/laundry");
+      },
+      error: function (response) {
+        customAlert(error.responseJSON.errorMessage);
+      },
+    });
+  }
+
+  function minusPoint() {
+    $.ajax({
+      type: "PUT",
+      url: "/api/point/change",
+      async: false,
+      success: function (response) {
+        console.log(response.data.changePoint);
+        if (response.data.changePoint >= 0) {
+          apply();
+        } else {
+          customAlert("포인트가 부족합니다!");
+          return;
+        }
+      },
+      error: function (error) {
+        customAlert(error.responseJSON.errorMessage);
+      },
+    });
+  }
+
   function customAlert(text) {
     $("#alertText").text(text);
     $("#alertModal").modal("show");

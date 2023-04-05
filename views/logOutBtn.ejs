@@ -1,0 +1,20 @@
+<div class="d-grid gap-2 col-2 mx-auto">
+  <button type="button" class="btn btn-outline-light" onclick="logout()">
+    로그아웃
+  </button>
+</div>
+<script>
+  function logout() {
+    $.ajax({
+      type: "GET",
+      url: "/api/auth/logout",
+      success: function (response) {
+        alert("로그아웃이 정상적으로 처리되었습니다.");
+        window.location.href = "/login";
+      },
+      error: function (response) {
+        console.log(response.responseJSON.message);
+      },
+    });
+  }
+</script>

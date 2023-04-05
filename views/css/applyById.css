@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap");
+
+table {
+  width: auto;
+  text-align: center;
+  border: 1px solid #fff;
+  border-spacing: 1px;
+  font-family: "Do Hyeon", sans-serif;
+  margin: auto;
+}
+
+caption {
+  font-weight: bold;
+}
+
+table td {
+  padding: 10px;
+  background-color: #eee;
+}
+
+table th {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+}
+
+img {
+  width: 90px;
+  height: 90px;
+}
+
+.view,
+.delete {
+  border: none;
+  padding: 5px 10px;
+  color: #fff;
+  font-weight: bold;
+}
+
+.view {
+  background-color: #03a9f4;
+}
+
+.delete {
+  background-color: #e91e63;
+}
+
+.tablefoot {
+  padding: 0;
+  border-bottom: 3px solid #009688;
+}
+
+table > tbody > .trHover:hover {
+  background-color: grey;
+  color: rgba(41, 165, 248, 0.719);
+  cursor: pointer;
+}
